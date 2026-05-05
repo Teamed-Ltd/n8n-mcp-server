@@ -198,6 +198,7 @@ app.use(express.json());
 const transports = {};
 
 app.get("/sse", async (req, res) => {
+  res.setHeader("X-Accel-Buffering", "no");
   const transport = new SSEServerTransport("/messages", res);
   transports[transport.sessionId] = transport;
 
